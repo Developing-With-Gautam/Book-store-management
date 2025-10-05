@@ -15,7 +15,7 @@ class User(Base):
 
 class Book(Base):
     __tablename__ = "books"
-    id = Column(Integer,autoincrement=True,index=True)
+    id = Column(Integer,autoincrement=True,index=True,primary_key=True)
     title =Column(String,nullable=False)
     author = Column(String,nullable=False)
     price =Column(Float,nullable=False)
@@ -24,7 +24,7 @@ class Book(Base):
 
 class Order(Base):
     __tablename__ ="orders"
-    id = Column(Integer,autoincrement=True,index=True)
+    id = Column(Integer,autoincrement=True,index=True,primary_key=True)
     user_id = Column(Integer,ForeignKey("users.id"))
     created_at = Column(DateTime,server_default=func.now())
 
@@ -33,7 +33,7 @@ class Order(Base):
 
 class OrderItem(Base):
     __tablename__ = "order_items"
-    id = Column(Integer,autoincrement=True,index=True)
+    id = Column(Integer,autoincrement=True,index=True,primary_key=True)
     order_id = Column(Integer,ForeignKey("orders.id"))
     book_id =  Column(Integer,ForeignKey("books.id"))
     quantity = Column(Integer, nullable=False)

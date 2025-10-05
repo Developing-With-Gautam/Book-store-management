@@ -3,7 +3,11 @@ from pydantic import EmailStr,Field,BaseModel
 
 class UserCreate(BaseModel):
     name:str =Field(...,min_length=3,description="Name of the user")
-    email:EmailStr =Field(...,"Enter email of the user")
+    email:EmailStr =Field(...,description="Enter email of the user")
+    password:str = Field(...,min_length=3,description="password of the user")
+
+class UserLogin(BaseModel):
+    email:EmailStr =Field(...,description="Enter email of the user")
     password:str = Field(...,min_length=3,description="password of the user")
 
 
@@ -16,7 +20,7 @@ class BookCreate(BaseModel):
 
 class orderCreate(BaseModel):
     user_id:int
-    
+
 class OrderItemCreate(BaseModel):
     order_id:int
     book_id:int
